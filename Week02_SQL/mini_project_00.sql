@@ -1,5 +1,5 @@
 -- For the Mini project
--- word doc comming soon
+-- Convert to a .md or pdf for GitHub
 
 USE Northwind;
 
@@ -45,20 +45,20 @@ e.City
 FROM Employees e
 WHERE e.Country = 'UK';
 
--- 1.6 [] -  rows
+-- 1.6 [x] -  rows
 -- Territories, EmployeeTerritories, Employees, Orders, [Order Details]
 -- Sales total for all sales regions > 1,000,000 (round or format to present numbers)
 
-SELECT t.RegionID,
-COUNT(t.RegionID) AS "No. of Orders per Region"
-FROM Territories t INNER JOIN EmployeeTerritories et
-ON t.TerritoryID = et.TerritoryID INNER JOIN Employees e
-ON et.EmployeeID = e.EmployeeID INNER JOIN Orders o
-ON e.EmployeeID = o.EmployeeID INNER JOIN [Order Details] od
-ON o.OrderID = od.OrderID
-GROUP BY t.RegionID;
+SELECT r.RegionID, ROUND(SUM((od.Quantity * od.UnitPrice) * (1 - od.Discount)), 2) AS "Total Price"
+FROM [Order Details] od INNER JOIN Orders o
+ON od.OrderID = o.OrderID INNER JOIN Employees e
+ON o.EmployeeID = e.EmployeeID INNER JOIN EmployeeTerritories et
+ON e.EmployeeID = et.EmployeeID INNER JOIN Territories t
+ON et.TerritoryID = t.TerritoryID INNER JOIN Region r
+ON t.RegionID = r.RegionID
+GROUP BY r.RegionID
+HAVING ROUND(SUM((od.Quantity * od.UnitPrice) * (1 - od.Discount)), 2) > 1000000;
 
-SELECT DISTINCT RegionID FROM Territories;
 
 -- 1.7 [x]
 
@@ -70,10 +70,10 @@ AND (ShipCountry = 'USA' OR ShipCountry = 'UK');
 -- 1.8 [x]
 
 SELECT TOP 1 OrderId,
-MAX(ROUND((UnitPrice * Quantity) * Discount, 2)) AS "Greatest Discounted"
+MAX(ROUND((UnitPrice * Quantity) * Discount, 2)) AS "Greatest Discount"
 FROM [Order Details]
 GROUP BY OrderID
-ORDER BY "Greatest Discounted" DESC;
+ORDER BY "Greatest Discount" DESC;
 
 -- []
 
@@ -91,14 +91,14 @@ CREATE TABLE spartans_table
     course_taken VARCHAR(30),
     grade_achieved CHAR(3),
     training_stream VARCHAR(10)
-)
+);
 
 -- Execise 2.2 [x]
 INSERT INTO spartans_table
 VALUES
 ('Dunni',
-'A',
-'A London Uni',
+'Adebusuyi',
+'Goldsmiths',
 'Comupter Science',
 '2:2',
 'DevOps'),
@@ -107,7 +107,7 @@ VALUES
 'A London Uni',
 'Maths',
 '2:1',
-'DevOps')
+'DevOps');
 
 SELECT * FROM spartans_table;
 
@@ -122,7 +122,19 @@ SELECT CONCAT(e.FirstName, ' ', e.LastName) AS "Employee",
 FROM Employees e LEFT JOIN Employees m
 ON e.ReportsTo = m.EmployeeID;
 
--- 3.2 []
+-- 3.2 [x]
 
+-- ALL sales for each Supplier
+-- Supplier --> Products --> Order Details
+SELECT s.CompanyName AS "Suppliers",
+    ROUND(SUM((od.Quantity * od.UnitPrice) * (1 - od.Discount)), 2) AS "Total Sales"
+FROM Suppliers s INNER JOIN Products p
+ON s.SupplierID = p.SupplierID INNER JOIN [Order Details] od
+ON p.ProductID = od.ProductID
+GROUP BY s.CompanyName
+HAVING ROUND(SUM((od.Quantity * od.UnitPrice) * (1 - od.Discount)), 2) > 10000;
 
--- 3.3 []
+-- 3.3 [], YTD - Year to date?
+-- Order Details --> Orders --> Customers
+
+-- 3.4 []

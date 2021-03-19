@@ -1,3 +1,6 @@
+# Unedited notes for day 2
+There are a few empty tables and missing definitions
+
 ### Null and Default
 
 **Null** does not equate to nothing - it doesn't equal zero and isn't even equal to an empty string. Null is just an undefined value. Nothing is equal to it. (Not even Null == Null, as it is *literally an **undefined value***)
@@ -207,8 +210,6 @@ WHERE CHARINDEX('''', ProductName) != 0; --
 **DISTINCT**
 
 **ORDER BY**
-# Unedited notes for day 2
-There are a few empty tables and missing definitions
 
 ### Date Functions
 

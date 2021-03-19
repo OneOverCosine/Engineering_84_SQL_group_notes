@@ -183,8 +183,7 @@ GROUP BY s.CompanyName
 HAVING ROUND(SUM((od.Quantity * od.UnitPrice) * (1 - od.Discount)), 2) > 10000;
 ```
 
-### 3.3 List the Top 10 Customers YTD for the latest year in the Orders file. Based on total value of orders shipped. No 
-Excel required.
+### 3.3 List the Top 10 Customers YTD for the latest year in the Orders file. Based on total value of orders shipped. No Excel required.
 
 ### 3.4 Plot the Average Ship Time by month for all data in the Orders Table using a line chart as below. (Worksheet had a line chart pictured)
 

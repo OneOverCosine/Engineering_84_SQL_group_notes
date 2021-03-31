@@ -9,11 +9,21 @@ Agile is a set of values and principles. It's a set of beliefs that teams can us
 - (point)
 
 ## The Agile Manifesto
-(Manifesto here)
 
-### The 4 Values of Agile
-While the values on the right *are* important, following Agile, we place more importance on the values on the left.
-- **Individuals and Interactions** over *Processes and Tools*
-- **Working Software** over *Comprehensive Documentation*
-- **Customer Collaboration** over *Contract Negotiation*
-- **Responding to Change** over *Following a Plan*
+### And the 4 Values of Agile
+
+> We are uncovering better ways of developing software by doing is and helping others do it. Through this work we have come to value:
+
+**Individuals and Interactions** over *Processes and Tools*
+
+**Working Software** over *Comprehensive Documentation*
+
+**Customer Collaboration** over *Contract Negotiation*
+
+**Responding to Change** over *Following a Plan*
+
+> That is, while there is value in the items on the right, we value the items on the left more.
+
+## Principles behind the Agile Manifesto
+
+Link to [Principles](https://agilemanifesto.org/principles.html)

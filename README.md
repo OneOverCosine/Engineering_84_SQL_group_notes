@@ -2,5 +2,5 @@
 For weekly notes compiled by OOC  
 Feel free to browse~  
 
-Week 1 - Business Week  
-Week 2 - SQL  
+[Week 1](.Week01_Business/) - Business Week  
+[Week 2](.Week02_SQL/) - SQL  
